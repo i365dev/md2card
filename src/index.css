@@ -1,13 +1,111 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --primary-color: #3498db;
+  --text-color: #333333;
+  --accent-color: #e74c3c;
+  --font-family: 'Arial, sans-serif';
+  --border-radius: '8px';
+  --box-shadow: '0 4px 6px rgba(0, 0, 0, 0.1)';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .app-container {
+    @apply flex flex-col h-screen max-w-7xl mx-auto;
+  }
+
+  .app-header {
+    @apply flex items-center justify-between p-4 bg-white border-b border-gray-200;
+  }
+
+  .theme-controls {
+    @apply flex gap-2;
+  }
+
+  .app-main {
+    @apply flex flex-1 overflow-hidden;
+  }
+
+  .editor-panel {
+    @apply flex-1 p-4 border-r border-gray-200 overflow-auto;
+  }
+
+  .preview-panel {
+    @apply flex-1 p-4 overflow-auto flex items-center justify-center bg-gray-100;
+  }
+
+  .card-container {
+    @apply w-full max-w-2xl bg-background rounded-custom shadow-custom overflow-hidden transition-all duration-300;
+  }
+
+  .card-content {
+    @apply p-8 text-text font-sans;
+  }
+
+  .card-title {
+    @apply text-primary text-4xl leading-tight mt-0 mb-4 border-l-4 border-accent pl-4;
+  }
+
+  .heading-2 {
+    @apply text-primary text-2xl mt-6 mb-4;
+  }
+
+  .heading-3 {
+    @apply text-primary text-xl mt-5 mb-3;
+  }
+
+  .card-paragraph {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .card-image {
+    @apply max-w-full rounded-lg my-4;
+  }
+
+  .card-link {
+    @apply text-primary no-underline border-b border-primary transition-opacity duration-200 hover:opacity-80;
+  }
+
+  .card-tag {
+    @apply inline-block px-3 py-1 mr-2 mb-2 bg-primary text-white rounded-full text-sm font-bold;
+  }
+
+  .card-callout {
+    @apply my-6 p-4 rounded-lg bg-opacity-10 border-l-4;
+  }
+
+  .card-callout-tip {
+    @apply bg-green-100 border-green-500;
+  }
+
+  .card-callout-info {
+    @apply bg-blue-100 border-blue-500;
+  }
+
+  .card-callout-warning {
+    @apply bg-orange-100 border-orange-500;
+  }
+
+  .card-code-block {
+    @apply my-4 p-4 bg-gray-50 rounded-lg overflow-x-auto font-mono text-sm;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-main {
+    @apply flex-col;
+  }
+
+  .editor-panel,
+  .preview-panel {
+    @apply flex-none h-1/2;
+  }
+
+  .editor-panel {
+    @apply border-r-0 border-b border-gray-200;
+  }
 }
