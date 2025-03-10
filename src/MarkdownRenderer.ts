@@ -74,11 +74,13 @@ class MarkdownRenderer {
 
   public render(markdown: string): string {
     try {
-      marked.setOptions({
-        renderer: this.renderer,
-        gfm: true, // Enable GitHub Flavored Markdown
-        breaks: true, // Convert \n to <br>
-      });
+    marked.setOptions({
+      renderer: this.renderer,
+      gfm: true,         // Enable GitHub Flavored Markdown
+      breaks: true,      // Convert \n to <br>
+      headerIds: true,   // Generate header IDs
+      mangle: false      // Don't modify @mentions
+    });
 
       const result = marked.parse(markdown);
       return typeof result === 'string' ? result : '';

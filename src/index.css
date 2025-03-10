@@ -131,12 +131,12 @@
   }
 
   .heading-2 {
-    @apply text-2xl mt-6 mb-4;
+    @apply text-2xl font-bold mt-6 mb-4;
     color: var(--card-primary-color);
   }
 
   .heading-3 {
-    @apply text-xl mt-5 mb-3;
+    @apply text-xl font-semibold mt-5 mb-3;
     color: var(--card-primary-color);
   }
 
@@ -155,18 +155,25 @@
   }
 
   .card-tag {
-    @apply inline-block px-3 py-1 mr-2 mb-2 text-white rounded-full text-sm font-bold mt-4;
+    @apply inline-flex items-center justify-center px-3 py-1 mr-2 mb-2 rounded-full text-sm font-medium mt-4;
     background-color: var(--card-primary-color);
+    color: white;
+    line-height: 1;
+    height: 28px;
   }
 
-  /* Improve list and content spacing */
-  .card-ordered-list,
+  /* List styles */
+  .card-ordered-list {
+    @apply list-decimal pl-6 mb-4 space-y-2;
+    counter-reset: item;
+  }
+
   .card-unordered-list {
-    @apply mb-6;
+    @apply list-disc pl-6 mb-4 space-y-2;
   }
 
-  .card-paragraph {
-    @apply mb-4 leading-relaxed;
+  .card-list-item {
+    @apply pl-1 mb-1;
   }
 
   .card-callout {
