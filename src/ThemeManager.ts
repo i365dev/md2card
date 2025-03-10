@@ -94,7 +94,7 @@ class ThemeManager {
     // Set data-theme attribute for CSS selectors
     root.setAttribute('data-theme', this.currentTheme);
     
-    // Set CSS variables
+    // Set CSS variables (without quotes for values)
     root.style.setProperty('--background', theme.background);
     root.style.setProperty('--primary-color', theme.primaryColor);
     root.style.setProperty('--text-color', theme.textColor);
@@ -103,12 +103,16 @@ class ThemeManager {
     root.style.setProperty('--border-radius', theme.borderRadius);
     root.style.setProperty('--box-shadow', theme.boxShadow);
 
-    // Clean up any previously set inline background style if using a gradient theme
-    const cardPreview = document.querySelector('.card-preview');
-    if (cardPreview) {
-      if (theme.background.includes('gradient')) {
-        cardPreview.setAttribute('style', ''); // Remove inline background style
-      }
+    // Update card container theme classes
+    const cardContainer = document.getElementById('card-preview');
+    if (cardContainer) {
+      // Remove all theme classes
+      Object.keys(this.themes).forEach(themeId => {
+        cardContainer.classList.remove(`theme-${themeId}`);
+      });
+      
+      // Add current theme class
+      cardContainer.classList.add(`theme-${this.currentTheme}`);
     }
   }
 

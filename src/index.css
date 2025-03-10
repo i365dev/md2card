@@ -7,9 +7,9 @@
   --primary-color: #3498db;
   --text-color: #333333;
   --accent-color: #e74c3c;
-  --font-family: 'Arial, sans-serif';
-  --border-radius: '8px';
-  --box-shadow: '0 4px 6px rgba(0, 0, 0, 0.1)';
+  --font-family: Arial, sans-serif;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @layer components {
@@ -38,14 +38,36 @@
   }
 
   .card-container {
-    @apply w-full max-w-2xl rounded-custom shadow-custom overflow-hidden transition-all duration-300;
+    @apply w-full max-w-2xl overflow-hidden transition-all duration-300;
     background: var(--background);
+    color: var(--text-color);
     font-family: var(--font-family);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
   }
 
   /* Theme-specific styles */
-  [data-theme="instagram"] .card-container {
+  [data-theme="instagram"] .card-container,
+  .theme-instagram {
     background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  }
+
+  [data-theme="twitter"] .card-container,
+  .theme-twitter {
+    /* Twitter 特定样式 */
+    background: var(--background);
+  }
+
+  [data-theme="pinterest"] .card-container,
+  .theme-pinterest {
+    /* Pinterest 特定样式 */
+    background: var(--background);
+  }
+
+  [data-theme="dark"] .card-container,
+  .theme-dark {
+    /* Dark mode 特定样式 */
+    background: var(--background);
   }
 
   .card-content {
@@ -54,7 +76,7 @@
   }
 
   .card-title {
-    @apply text-4xl leading-tight mt-0 mb-4 border-l-4 pl-4;
+    @apply text-4xl leading-tight mt-0 mb-6 border-l-4 pl-4;
     color: var(--primary-color);
     border-color: var(--accent-color);
   }
@@ -84,12 +106,22 @@
   }
 
   .card-tag {
-    @apply inline-block px-3 py-1 mr-2 mb-2 text-white rounded-full text-sm font-bold;
+    @apply inline-block px-3 py-1 mr-2 mb-2 text-white rounded-full text-sm font-bold mt-4;
     background-color: var(--primary-color);
   }
 
+  /* Improve list and content spacing */
+  .card-ordered-list,
+  .card-unordered-list {
+    @apply mb-6;
+  }
+
+  .card-paragraph {
+    @apply mb-4 leading-relaxed;
+  }
+
   .card-callout {
-    @apply my-6 p-4 rounded-lg bg-opacity-10 border-l-4;
+    @apply my-6 p-4 rounded-lg bg-opacity-10 border-l-4 mt-8;
   }
 
   .card-callout-tip {

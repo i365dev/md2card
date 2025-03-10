@@ -30,10 +30,10 @@ const App: React.FC = () => {
   const themeManagerRef = useRef(new ThemeManager());
   const markdownRendererRef = useRef(new MarkdownRenderer());
 
-  // Apply initial theme
+  // Apply theme on initialization and theme changes
   useEffect(() => {
-    themeManagerRef.current.applyTheme();
-  }, []);
+    themeManagerRef.current.setTheme(currentTheme);
+  }, [currentTheme]);
 
   // Update rendered HTML when markdown changes
   useEffect(() => {
