@@ -25,7 +25,7 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
   return (
     <div className="theme-controls">
       <select
-        className="px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2"
         value={currentTheme}
         onChange={(e) => onThemeChange(e.target.value)}
       >
@@ -37,14 +37,14 @@ const ThemeSelector: React.FC<ThemeSelectorProps> = ({
       </select>
       
       <button
-        className="px-4 py-2 bg-primary text-white rounded hover:opacity-90 transition-opacity"
+        className="theme-button"
         onClick={onRandomTheme}
       >
         随机主题
       </button>
       
       <button
-        className="px-4 py-2 bg-accent text-white rounded hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+        className="export-button disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={onExport}
         disabled={isExporting}
       >

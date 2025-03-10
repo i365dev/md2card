@@ -89,29 +89,25 @@ class ThemeManager {
 
   public applyTheme(): void {
     const theme = this.themes[this.currentTheme];
-    const root = document.documentElement;
     
-    // Set data-theme attribute for CSS selectors
-    root.setAttribute('data-theme', this.currentTheme);
+    // Set data-theme attribute on root for theme-specific selectors
+    document.documentElement.setAttribute('data-theme', this.currentTheme);
     
-    // Set CSS variables (without quotes for values)
-    root.style.setProperty('--background', theme.background);
-    root.style.setProperty('--primary-color', theme.primaryColor);
-    root.style.setProperty('--text-color', theme.textColor);
-    root.style.setProperty('--accent-color', theme.accentColor);
-    root.style.setProperty('--font-family', theme.fontFamily);
-    root.style.setProperty('--border-radius', theme.borderRadius);
-    root.style.setProperty('--box-shadow', theme.boxShadow);
-
-    // Update card container theme classes
+    // Find card preview container
     const cardContainer = document.getElementById('card-preview');
     if (cardContainer) {
-      // Remove all theme classes
-      Object.keys(this.themes).forEach(themeId => {
-        cardContainer.classList.remove(`theme-${themeId}`);
-      });
+      // Set CSS variables only on card container
+      cardContainer.style.setProperty('--card-background', theme.background);
+      cardContainer.style.setProperty('--card-primary-color', theme.primaryColor);
+      cardContainer.style.setProperty('--card-text-color', theme.textColor);
+      cardContainer.style.setProperty('--card-accent-color', theme.accentColor);
+      cardContainer.style.setProperty('--card-font-family', theme.fontFamily);
+      cardContainer.style.setProperty('--card-border-radius', theme.borderRadius);
+      cardContainer.style.setProperty('--card-box-shadow', theme.boxShadow);
       
-      // Add current theme class
+      // Update theme classes
+      const themeClasses = Object.keys(this.themes).map(id => `theme-${id}`);
+      cardContainer.classList.remove(...themeClasses);
       cardContainer.classList.add(`theme-${this.currentTheme}`);
     }
   }

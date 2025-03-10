@@ -3,13 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --primary-color: #3498db;
-  --text-color: #333333;
-  --accent-color: #e74c3c;
-  --font-family: Arial, sans-serif;
-  --border-radius: 8px;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 应用UI固定样式变量 */
+  --app-primary: #3498db;
+  --app-background: #ffffff;
+  --app-text: #333333;
+  --app-accent: #e74c3c;
+  
+  /* 默认卡片样式变量 */
+  --card-background: #ffffff;
+  --card-primary-color: #3498db;
+  --card-text-color: #333333;
+  --card-accent-color: #e74c3c;
+  --card-font-family: Arial, sans-serif;
+  --card-border-radius: 8px;
+  --card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 @layer components {
@@ -18,11 +25,27 @@
   }
 
   .app-header {
-    @apply flex items-center justify-between p-4 bg-white border-b border-gray-200;
+    @apply flex items-center justify-between p-4 border-b border-gray-200;
+    background-color: var(--app-background);
+    color: var(--app-text);
+  }
+
+  .app-header h1 {
+    color: var(--app-primary);
   }
 
   .theme-controls {
     @apply flex gap-2;
+  }
+
+  .theme-controls button {
+    @apply px-4 py-2 text-white rounded transition-opacity hover:opacity-90;
+    background-color: var(--app-primary);
+  }
+
+  .export-button {
+    @apply px-4 py-2 text-white rounded transition-opacity hover:opacity-90;
+    background-color: var(--app-accent);
   }
 
   .app-main {
@@ -39,35 +62,32 @@
 
   .card-container {
     @apply w-full max-w-2xl overflow-hidden transition-all duration-300;
-    background: var(--background);
-    color: var(--text-color);
-    font-family: var(--font-family);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    background: var(--card-background);
+    color: var(--card-text-color);
+    font-family: var(--card-font-family);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
   }
 
   /* Theme-specific styles */
-  [data-theme="instagram"] .card-container,
+  [data-theme="instagram"] #card-preview,
   .theme-instagram {
     background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
   }
 
-  [data-theme="twitter"] .card-container,
+  [data-theme="twitter"] #card-preview,
   .theme-twitter {
-    /* Twitter 特定样式 */
-    background: var(--background);
+    background: var(--card-background);
   }
 
-  [data-theme="pinterest"] .card-container,
+  [data-theme="pinterest"] #card-preview,
   .theme-pinterest {
-    /* Pinterest 特定样式 */
-    background: var(--background);
+    background: var(--card-background);
   }
 
-  [data-theme="dark"] .card-container,
+  [data-theme="dark"] #card-preview,
   .theme-dark {
-    /* Dark mode 特定样式 */
-    background: var(--background);
+    background: var(--card-background);
   }
 
   .card-content {
@@ -77,18 +97,18 @@
 
   .card-title {
     @apply text-4xl leading-tight mt-0 mb-6 border-l-4 pl-4;
-    color: var(--primary-color);
-    border-color: var(--accent-color);
+    color: var(--card-primary-color);
+    border-color: var(--card-accent-color);
   }
 
   .heading-2 {
     @apply text-2xl mt-6 mb-4;
-    color: var(--primary-color);
+    color: var(--card-primary-color);
   }
 
   .heading-3 {
     @apply text-xl mt-5 mb-3;
-    color: var(--primary-color);
+    color: var(--card-primary-color);
   }
 
   .card-paragraph {
@@ -101,13 +121,13 @@
 
   .card-link {
     @apply no-underline transition-opacity duration-200 hover:opacity-80;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--primary-color);
+    color: var(--card-primary-color);
+    border-bottom: 1px solid var(--card-primary-color);
   }
 
   .card-tag {
     @apply inline-block px-3 py-1 mr-2 mb-2 text-white rounded-full text-sm font-bold mt-4;
-    background-color: var(--primary-color);
+    background-color: var(--card-primary-color);
   }
 
   /* Improve list and content spacing */
