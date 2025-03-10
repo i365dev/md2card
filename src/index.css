@@ -38,23 +38,35 @@
   }
 
   .card-container {
-    @apply w-full max-w-2xl bg-background rounded-custom shadow-custom overflow-hidden transition-all duration-300;
+    @apply w-full max-w-2xl rounded-custom shadow-custom overflow-hidden transition-all duration-300;
+    background: var(--background);
+    font-family: var(--font-family);
+  }
+
+  /* Theme-specific styles */
+  [data-theme="instagram"] .card-container {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
   }
 
   .card-content {
-    @apply p-8 text-text font-sans;
+    @apply p-8;
+    color: var(--text-color);
   }
 
   .card-title {
-    @apply text-primary text-4xl leading-tight mt-0 mb-4 border-l-4 border-accent pl-4;
+    @apply text-4xl leading-tight mt-0 mb-4 border-l-4 pl-4;
+    color: var(--primary-color);
+    border-color: var(--accent-color);
   }
 
   .heading-2 {
-    @apply text-primary text-2xl mt-6 mb-4;
+    @apply text-2xl mt-6 mb-4;
+    color: var(--primary-color);
   }
 
   .heading-3 {
-    @apply text-primary text-xl mt-5 mb-3;
+    @apply text-xl mt-5 mb-3;
+    color: var(--primary-color);
   }
 
   .card-paragraph {
@@ -66,11 +78,14 @@
   }
 
   .card-link {
-    @apply text-primary no-underline border-b border-primary transition-opacity duration-200 hover:opacity-80;
+    @apply no-underline transition-opacity duration-200 hover:opacity-80;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
   }
 
   .card-tag {
-    @apply inline-block px-3 py-1 mr-2 mb-2 bg-primary text-white rounded-full text-sm font-bold;
+    @apply inline-block px-3 py-1 mr-2 mb-2 text-white rounded-full text-sm font-bold;
+    background-color: var(--primary-color);
   }
 
   .card-callout {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import EditorPanel from './components/EditorPanel';
 import PreviewPanel from './components/PreviewPanel';
 import ThemeSelector from './components/ThemeSelector';
@@ -26,14 +26,19 @@ const App: React.FC = () => {
   const [currentTheme, setCurrentTheme] = useState('default');
   const [isExporting, setIsExporting] = useState(false);
 
-  // Initialize services
-  const themeManager = new ThemeManager();
-  const markdownRenderer = new MarkdownRenderer();
+  // Initialize services using useRef to maintain instances across renders
+  const themeManagerRef = useRef(new ThemeManager());
+  const markdownRendererRef = useRef(new MarkdownRenderer());
+
+  // Apply initial theme
+  useEffect(() => {
+    themeManagerRef.current.applyTheme();
+  }, []);
 
   // Update rendered HTML when markdown changes
   useEffect(() => {
     try {
-      const html = markdownRenderer.render(markdown);
+      const html = markdownRendererRef.current.render(markdown);
       setRenderedHtml(html);
     } catch (error) {
       console.error('Rendering error:', error);
@@ -42,14 +47,14 @@ const App: React.FC = () => {
 
   // Handle theme changes
   const handleThemeChange = (themeId: string) => {
-    if (themeManager.setTheme(themeId)) {
+    if (themeManagerRef.current.setTheme(themeId)) {
       setCurrentTheme(themeId);
     }
   };
 
   // Handle random theme
   const handleRandomTheme = () => {
-    const newTheme = themeManager.setRandomTheme();
+    const newTheme = themeManagerRef.current.setRandomTheme();
     setCurrentTheme(newTheme);
   };
 
@@ -72,7 +77,7 @@ const App: React.FC = () => {
       <header className="app-header">
         <h1 className="text-2xl font-bold text-primary">MD2Card</h1>
         <ThemeSelector
-          themes={themeManager.getAllThemes()}
+          themes={themeManagerRef.current.getAllThemes()}
           currentTheme={currentTheme}
           onThemeChange={handleThemeChange}
           onRandomTheme={handleRandomTheme}
